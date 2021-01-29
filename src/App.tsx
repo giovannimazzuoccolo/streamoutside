@@ -4,7 +4,8 @@ import Speedometer from "./speedometer/speedometer";
 function App() {
   return (
     <div className="App">
-      <Speedometer visible draggable />
+      {/* <Speedometer visible draggable /> */}
+      <p>demo app</p>
     </div>
   );
 }
