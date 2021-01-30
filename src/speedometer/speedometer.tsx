@@ -10,7 +10,7 @@ interface IProps {
 const Speedometer: FunctionComponent<IProps> = ({ visible, draggable }) => {
   const speed: number = useSpeed();
 
-  if (visible) {
+  if (!visible) {
     return null;
   }
 
