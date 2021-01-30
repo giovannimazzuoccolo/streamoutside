@@ -17,6 +17,8 @@ const Speedometer: FunctionComponent<IProps> = ({ visible, draggable }) => {
   return (
     <div draggable={draggable} data-testId={"Speedometer"}>
       <ReactSpeedometer value={speed} maxValue={50} segments={5} />
+      <br /> <br />
+      speed is {speed}
     </div>
   );
 };

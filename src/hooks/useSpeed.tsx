@@ -15,6 +15,5 @@ export function useSpeed(): number {
     });
     return () => navigator.geolocation.clearWatch(geo.current);
   }, []);
-
   return speed;
 }
