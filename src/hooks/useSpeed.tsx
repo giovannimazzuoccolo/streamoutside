@@ -10,7 +10,7 @@ export function useSpeed(): number {
 
     function success(pos: GeolocationPosition) {
       if (pos.coords.speed) {
-        setSpeed(pos.coords.speed);
+        setSpeed((speed) => speed + 1); //pos.coords.speed
       } else {
         setSpeed(0);
       }
