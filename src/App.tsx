@@ -5,7 +5,7 @@ function App() {
   return (
     <div className="App">
       <Speedometer visible draggable />
-      <p>demo app</p>
+      <p>Speedometer test</p>
     </div>
   );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
 export function useSpeed(): number {
-  const [speed, setSpeed] = useState<number>(0);
+  const [speed, setSpeed] = useState<number>(-22);
 
   const geo: any = useRef();
 
