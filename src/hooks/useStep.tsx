@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 
-const useStep = (): number => {
+export const useStep = (): number => {
   const [steps, setSteps] = useState<number>(0);
-  const [trigger, setTrigger] = useState<Boolean>(false);
+  const [motion, setMotion] = useState<number>(0);
 
-  function motionHandler() {
-    console.log("noop");
-  }
-
-  function orientationHandler() {
-    console.log("nooop");
+  function motionHandler(evt:DeviceMotionEvent) {
+	  if(evt.accelerationIncludingGravity?.y) {
+     		setMotion(evt.accelerationIncludingGravity.y);
+	  } else {
+	  	return false;
+	  }
   }
 
   useEffect(() => {
@@ -18,11 +18,27 @@ const useStep = (): number => {
       window.addEventListener("deviceorientation", orientationHandler, false);
     }
 
+  function orientationHandler(evt:DeviceOrientationEvent) {
+	let flag = false;
+
+	if(evt.beta !== null) {
+	if((motion -10 * Math.sin(evt.beta*Math.PI/180)) > 1) {
+		flag = true;
+	}
+
+	if((motion-10*Math.sin(evt.beta*Math.PI/180)) <-1) {
+		if(flag) {
+			setSteps(steps => steps+1);
+		}
+	}
+	}
+  }
+
     return () => {
       window.removeEventListener("devicemotion", motionHandler);
       window.removeEventListener("deviceorientation", orientationHandler);
     };
-  }, []);
+  }, [motion]);
 
   return steps;
 };

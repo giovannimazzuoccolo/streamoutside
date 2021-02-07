@@ -1,7 +1,7 @@
 import { useEffect, useState, useRef } from "react";
 
 export function useSpeed(): number {
-  const [speed, setSpeed] = useState<number>(-22);
+  const [speed, setSpeed] = useState<number>(0);
 
   const geo: any = useRef();
 
@@ -10,7 +10,7 @@ export function useSpeed(): number {
 
     function success(pos: GeolocationPosition) {
       if (pos.coords.speed) {
-        setSpeed(pos.coords.latitude); //pos.coords.speed
+        setSpeed(pos.coords.speed); //pos.coords.speed
       } else {
         setSpeed(0);
       }
@@ -20,13 +20,6 @@ export function useSpeed(): number {
       alert("ERROR(" + err.code + "): " + err.message);
     }
 
-    // geo.current = navigator.geolocation.watchPosition((pos:GeolocationPosition) => {
-    //   if (pos.coords.speed) {
-    //     setSpeed(pos.coords.speed);
-    //   } else {
-    //     setSpeed(0);
-    //   }
-    // });
     return () => navigator.geolocation.clearWatch(geo.current);
   }, []);
   return speed;
